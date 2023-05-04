@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="../css/bootstrap.css">
+        <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+        <style>
+        h1{
+            text-align: center;
+        }
+        #singin{
+           float: right;
+            background-color: rgb(255, 174, 0);
+        }
+        #singup{
+           
+            background-color: rgb(0, 255, 115);
+        }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Sign Up</h1>
+
+            <div class="row">
+                <div class="col-md-4"> </div>
+                <div class="col-md-4">
+                    <div class="form">
+                        <div class="mb-3">
+                            <label for="fname">First name</label>
+                            <input type="text" placeholder="Enter your First name" id="firstname" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Last">Last name</label>
+                            <input type="text" placeholder="Enter your Last name" id="lastname" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Last">Email</label>
+                            <input type="email" placeholder="Enter your Email" id="email" class="form-control">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="Last">password</label>
+                                    <input type="password" placeholder="Enter new password"  id="password" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="Last">Confirm password</label>
+                                    <input type="password" placeholder="please Confirm password" id="confirmpassword "class="form-control">
+                                 </div>
+                            </div>
+                          
+                        </div>
+
+                        <div class="mb-3">
+                            <button onclick="SignUp()" class="btn btn success" id="singup" >SignUp</button>
+                            <button class="btn btn warning" id="singin">SignIn</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+         <script src="./jquey.js"></script>
+    <script>
+            function SignUp(){
+                 const url="html://localhost:1700"
+
+                 const firstname=$('#firstname').val
+                 const lastname=$('#lastname').val
+                 const email=$('#email').val
+                 const  password=$('#password').val
+                 const confirmpassword=$('#confirmpassword').val            
+                 if(firstname.length==0){
+                    alert('enter first name')
+                 }
+                 if(lastname.length==0){
+                    alert('enter last name')
+                 }
+                 if(email.length==0){
+                    alert('enter the email')
+                 }
+                 if(password.length==0){
+                    alert('enter the password')
+                 }
+                 if(confirmpassword.length==0){
+                    alert('plaese confirm password')
+                 }
+                 if(password!=confirmpassword){
+                    alert('Password does not match')
+                 }
+                 else{
+                    /// make your sign up api
+                    $.ajax({
+                        url:url +'/signup',
+                        method:'post',
+                        data : {
+                            firstname:firstname,
+                            lastname:lastname,
+                            email:email,
+                            password:password,
+                        },
+                        success:(response)=>{
+                            console.log(response)
+                        },
+                        error:(response)=>
+                        {
+                            console.log(response)
+                        }
+                    })
+                 }
+                }
+    </script>
+    
+    
+    
+        </body>
+</html>
